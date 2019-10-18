@@ -6,15 +6,15 @@ file : ft_dcl? (ft_def)+;
 
 // ////////////////////ft_dcl (first half)
 
-ft_dcl: 'declare' '{' ((func_dcl | ID | var_def)(';'))+ '}';
+ft_dcl: 'declare' '{' ((func_dcl | ID ';'| var_def))+ '}';
 
-func_dcl : ('(' args ')' '=')? ID '(' (args | args_var) ')' ;
+func_dcl : ('(' args ')' '=')? ID '(' (args | args_var) ')' ';';
 
 args: type('['']')* (',' type('['']')*)*;
 
 args_var : type('['']')* ID (',' type('['']')* ID)* ;
 
-var_def: 'Const'? type var_val (',' var_val)* ;
+var_def: 'Const'? type var_val (',' var_val)* ';';
 
 var_val : ref ('='expr)? ;
 
@@ -39,7 +39,7 @@ ft_def: type_def | fun_def ;
 
 type_def : 'type' ID (':' ID)? '{' (component)+ '}';
 
-component: (ACCESS_MODIFIER)? var_def | fun_def ;
+component: (ACCESS_MODIFIER)? fun_def | var_def;        //changed
 
 fun_def : ('(' args_var ')' '=')? 'function' ID '(' args_var? ')' block;
 
