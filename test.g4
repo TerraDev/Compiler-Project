@@ -39,7 +39,7 @@ ft_def: type_def | fun_def ;
 
 type_def : 'type' ID (':' ID)? '{' (component)+ '}';
 
-component: (ACCESS_MODIFIER)? fun_def | var_def;        //changed
+component: (ACCESS_MODIFIER)? ( var_def | fun_def);        //changed
 
 fun_def : ('(' args_var ')' '=')? 'function' ID '(' args_var? ')' block;
 
