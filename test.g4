@@ -57,6 +57,7 @@ loop_stmt : 'for' ( type? assign )? ';' expr ';' assign? block | 'while' expr bl
 
 
 type : 'int' | 'float' | 'string' | 'bool' | ID ;
+
 //LEXER:
 
 ACCESS_MODIFIER: 'public' | 'private' | 'protected' ;
