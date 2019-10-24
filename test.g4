@@ -20,7 +20,7 @@ var_val : ref ('='expr)? ;
 
 ref: ID('[' expr ']')* ;
 
-expr: expr binary_op expr | '(' expr ')' | UNARY_OP expr | CONST_VAL | 'allocate' handle_call | func_call | var | list | 'nil' ;
+expr: expr binary_op expr | '(' expr ')' | UNARY_OP expr | const_val | 'allocate' handle_call | func_call | var | list | 'nil' ;
 
 
 binary_op : ARITHMETIC | RELATIONAL | BITWISE | LOGICAL ;
@@ -51,20 +51,45 @@ assign : ( var | '(' var ( ',' var )* ')' ) '=' expr ;
 
 cond_stmt : 'if' expr( block | stmt ) ( 'else' ( block | stmt ) )? | 'switch' var '{' switch_body '}';
 
-switch_body : ( 'caseof' 'int_const' ':' block )+ ('default' ':' block )? ;
+switch_body : ( 'caseof' int_const ':' block )+ ('default' ':' block )? ;
 
 loop_stmt : 'for' ( type? assign )? ';' expr ';' assign? block | 'while' expr block ;
 
 
 type : 'int' | 'float' | 'string' | 'bool' | ID ;
 
+// START region : CONSTS
+
+const_val: int_const | bool_const | real_const  | string_const ;
+bool_const : BOOL_CONST ;
+
+string_const: STRING_CONST;
+
+int_const: DEC | HEX ;
+
+real_const :  real_const2 | real_const1;
+
+real_const1 : ( HEX | DEC )?'.'( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
+
+real_const2 : ( HEX | DEC )'.'( HEX | SPECDEC )? ('^' ( HEX | ('+'|'-')? DEC ))? ;
+
+STRING_CONST : '\'' (~'\'')* '\'' ;
+
+BOOL_CONST : 'false' | 'true' ;
+
+SPECDEC: [0-9]* ;
+
+DEC : ( '-'? [1-9] [0-9]* | '0' )  ;
+
+HEX : ('0x' | '0X') ( ([1-9] | [a-f] | [A-F]) ([0-9] | [a-f] | [A-F])* | '0') ;
+
+// END : CONSTS
+
 //LEXER:
 
 ACCESS_MODIFIER: 'public' | 'private' | 'protected' ;
 
 ID : (([a-z]+ | [A-Z]+ | '_' | '@')[0-9]*)+ ;
-
-CONST_VAL: 'int_const' | 'real_const' | 'bool_const' | 'string_const' ;
 
 UNARY_OP: '-' | '!' | '~' ;
 
