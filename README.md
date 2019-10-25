@@ -1,5 +1,5 @@
 # Compiler-Project
 
-Newest version of upload is v0.4
+Latest version of upload is v0.5
 
 ... in development
