@@ -51,7 +51,7 @@ assign : ( var | '(' var ( ',' var )* ')' ) '=' expr ;
 
 cond_stmt : 'if' expr( block | stmt ) ( 'else' ( block | stmt ) )? | 'switch' var '{' switch_body '}';
 
-switch_body : ( 'caseof' int_const ':' block )+ ('default' ':' block )? ;
+switch_body : ( 'caseof' INT_CONST ':' block )+ ('default' ':' block )? ;
 
 loop_stmt : 'for' ( type? assign )? ';' expr ';' assign? block | 'while' expr block ;
 
@@ -60,28 +60,28 @@ type : 'int' | 'float' | 'string' | 'bool' | ID ;
 
 // START region : CONSTS
 
-const_val: int_const | bool_const | real_const  | string_const ;
-bool_const : BOOL_CONST ;
+const_val: INT_CONST | BOOL_CONST | REAL_CONST  | STRING_CONST ;
 
-string_const: STRING_CONST;
+INT_CONST: DEC | HEX ;
 
-int_const: DEC | HEX ;
-
-real_const :  real_const2 | real_const1;
-
-real_const1 : ( HEX | DEC )?'.'( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
-
-real_const2 : ( HEX | DEC )'.'( HEX | SPECDEC )? ('^' ( HEX | ('+'|'-')? DEC ))? ;
-
-STRING_CONST : '\'' (~'\'')* '\'' ;
+REAL_CONST :  REAL_CONST1 | REAL_CONST2 | REAL_CONST3 ;
 
 BOOL_CONST : 'false' | 'true' ;
 
-SPECDEC: [0-9]* ;
+STRING_CONST : '\'' (~'\'')* '\'' ;
 
-DEC : ( '-'? [1-9] [0-9]* | '0' )  ;
+//Fragments:
+fragment REAL_CONST1 : ( HEX | DEC )'.'( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
 
-HEX : ('0x' | '0X') ( ([1-9] | [a-f] | [A-F]) ([0-9] | [a-f] | [A-F])* | '0') ;
+fragment REAL_CONST2 : ( HEX | DEC )'.' ('^' ( HEX | ('+'|'-')? DEC ))? ;
+
+fragment REAL_CONST3 : '.' ( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
+
+fragment SPECDEC: [0-9]* ;
+
+fragment DEC :  '0' | ('-'? [1-9] [0-9]* ) ;
+
+fragment HEX : ('0x' | '0X') ( ([1-9] | [a-f] | [A-F]) ([0-9] | [a-f] | [A-F])* | '0') ;
 
 // END : CONSTS
 
