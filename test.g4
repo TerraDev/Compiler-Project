@@ -8,7 +8,7 @@ file : ft_dcl? (ft_def)+;
 
 ft_dcl: 'declare' '{' ((func_dcl | ID ';'| var_def))+ '}';
 
-func_dcl : ('(' args ')' '=')? ID '(' (args | args_var) ')' ';';
+func_dcl : ('(' args ')' '=')? ID '(' (args | args_var)? ')' ';';
 
 args: type('['']')* (',' type('['']')*)*;
 
@@ -20,10 +20,16 @@ var_val : ref ('='expr)? ;
 
 ref: ID('[' expr ']')* ;
 
-expr: expr binary_op expr | '(' expr ')' | UNARY_OP expr | const_val | 'allocate' handle_call | func_call | var | list | 'nil' ;
 
+expr :   negxpr | excl_expr  | compl_expr | expr MULT expr | expr DIV expr | expr MOD expr | expr PLUS expr | expr MINUS expr |
+       expr LT expr | expr LE expr | expr GT expr | expr GE expr | expr EQ expr | expr NEQ expr |
+       expr REL_AND expr | expr REL_OR expr | expr BIT_AND expr | expr BIT_OR expr  |
+       '(' expr ')'  | const_val | 'allocate' handle_call | func_call | var | list | 'nil' ;
 
-binary_op : ARITHMETIC | RELATIONAL | BITWISE | LOGICAL ;
+       negxpr: MINUS ( negxpr | const_val | '(' expr ')'| 'allocate' handle_call | func_call| var | list | 'nil' );
+       excl_expr: EXCLAMATION ( excl_expr | const_val | '(' expr ')'| 'allocate' handle_call | func_call| var | list | 'nil' );
+       compl_expr: BITWISE_COMPL ( compl_expr | const_val | '(' expr ')'| 'allocate' handle_call | func_call| var | list | 'nil' );
+
 
 handle_call : ID'('( expr ( ',' expr )* )?')' ;
 
@@ -71,15 +77,15 @@ BOOL_CONST : 'false' | 'true' ;
 STRING_CONST : '\'' (~'\'')* '\'' ;
 
 //Fragments:
-fragment REAL_CONST1 : ( HEX | DEC )'.'( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
+fragment REAL_CONST1 : ( HEX | DEC )'.'( HEX | SPECDEC ) ('^'('+'|'-')? ( HEX | DEC ))? ;
 
-fragment REAL_CONST2 : ( HEX | DEC )'.' ('^' ( HEX | ('+'|'-')? DEC ))? ;
+fragment REAL_CONST2 : ( HEX | DEC )'.' ('^'('+'|'-')? ( HEX | DEC ))? ;
 
-fragment REAL_CONST3 : '.' ( HEX | SPECDEC ) ('^' ( HEX | ('+'|'-')? DEC ))? ;
+fragment REAL_CONST3 : '.' ( HEX | SPECDEC ) ('^'('+'|'-')? ( HEX | DEC ))? ;
 
 fragment SPECDEC: [0-9]* ;
 
-fragment DEC :  '0' | ('-'? [1-9] [0-9]* ) ;
+fragment DEC :  '0' | ( [1-9] [0-9]* ) ;
 
 fragment HEX : ('0x' | '0X') ( ([1-9] | [a-f] | [A-F]) ([0-9] | [a-f] | [A-F])* | '0') ;
 
@@ -91,12 +97,30 @@ ACCESS_MODIFIER: 'public' | 'private' | 'protected' ;
 
 ID : (([a-z]+ | [A-Z]+ | '_' | '@')[0-9]*)+ ;
 
-UNARY_OP: '-' | '!' | '~' ;
+//UNARY_OP: MINUS | '!' | '~' ;
 
-ARITHMETIC: '+' | '-' | '*' | '/' | '%';
-RELATIONAL: '&' | '|';
-BITWISE: '&&' | '||';
-LOGICAL: '==' | '!=' | '<=' | '>=' | '<' | '>' ;
+MULT  : '*' ;
+DIV   : '/' ;
+MOD : '%' ;
+PLUS  : '+' ;
+MINUS : '-' ;
+EXCLAMATION : '!';
+BITWISE_COMPL: '~' ;
+
+
+REL_AND: '&';
+REL_OR: '|' ;
+
+BIT_AND: '&&';
+BIT_OR: '||' ;
+
+GT : '>' ;
+GE : '>=' ;
+LT : '<' ;
+LE : '<=' ;
+EQ : '==' ;
+NEQ: '!=' ;
+
 
 WhiteSpace : [ \n\r\t] -> skip;
 
