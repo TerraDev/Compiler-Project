@@ -90,6 +90,55 @@ public class Amir_BinaryOperation {
                             op3.set_error("can not convert " + op1.get_type() + " to int");
                             return op3;
                         }
+
+                    case "|":
+                        //initial temp1
+                        if(op1.get_type().equals("int"))
+                            temp1 = Integer.parseInt(op1.get_value());
+                        else if (op1.get_type().equals("bool"))
+                            temp1 = Integer.parseInt(Amir_Convert.boolToInt(op1.get_value()));
+                            //else if()     op1.gettype == user-defined
+                        else {
+                            op3.set_error("can not convert " + op1.get_type() + " to int");
+                            return op3;
+                        }
+                        //initial temp2
+                        if(op2.get_type().equals("int"))
+                            temp2 = Integer.parseInt(op2.get_value());
+                        else if (op2.get_type().equals("bool"))
+                            temp2 = Integer.parseInt(Amir_Convert.boolToInt(op2.get_value()));
+                            //else if()     op1.gettype == user-defined
+                        else {
+                            op3.set_error("can not convert " + op2.get_type() + " to int");
+                            return op3;
+                        }
+                        op3.set_value(Integer.toString(temp1 | temp2));
+                        return op3;
+
+                    case "&":
+                        //initial temp1
+                        if(op1.get_type().equals("int"))
+                            temp1 = Integer.parseInt(op1.get_value());
+                        else if (op1.get_type().equals("bool"))
+                            temp1 = Integer.parseInt(Amir_Convert.boolToInt(op1.get_value()));
+                            //else if()     op1.gettype == user-defined
+                        else {
+                            op3.set_error("can not convert " + op1.get_type() + " to int");
+                            return op3;
+                        }
+                        //initial temp2
+                        if(op2.get_type().equals("int"))
+                            temp2 = Integer.parseInt(op2.get_value());
+                        else if (op2.get_type().equals("bool"))
+                            temp2 = Integer.parseInt(Amir_Convert.boolToInt(op2.get_value()));
+                            //else if()     op1.gettype == user-defined
+                        else {
+                            op3.set_error("can not convert " + op2.get_type() + " to int");
+                            return op3;
+                        }
+                        op3.set_value(Integer.toString(temp1 & temp2));
+                        return op3;
+
                     case "+":
                         //initial temp1
                         if(op1.get_type().equals("int"))
