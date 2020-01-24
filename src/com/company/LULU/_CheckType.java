@@ -2,7 +2,7 @@ package com.company.LULU;
 
 import java.util.*;
 
-public class Amir_CheckType {
+public class _CheckType {
     public static String getResultType(String op1_type,String operation,  String op2_type)
     {
         if (operation.equals("==")||operation.equals("!=")||operation.equals(">")||operation.equals(">=")||

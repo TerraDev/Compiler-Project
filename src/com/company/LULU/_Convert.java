@@ -2,7 +2,7 @@ package com.company.LULU;
 
 import java.util.*;
 
-public class Amir_Convert {
+public class _Convert {
 
     public static String boolToInt(String str)
     {

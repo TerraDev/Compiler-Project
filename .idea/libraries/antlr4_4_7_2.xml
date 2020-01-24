@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="antlr4-4.7.2">
+    <CLASSES>
+      <root url="jar://D:/antlr4-4.7.2.jar!/" />
+      <root url="jar://D:/javafx-17.0.jar!/" />
+      <root url="jar://D:/antlr-runtime-4.8.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/antlr4-4.8/antlr4-maven-plugin/src/main/java" />
+      <root url="file://D:/antlr4-4.8/antlr4-maven-plugin/src/test/java" />
+      <root url="file://D:/antlr4-4.8/runtime-testsuite/annotations/src" />
+      <root url="file://D:/antlr4-4.8/runtime-testsuite/processors/src" />
+      <root url="file://D:/antlr4-4.8/runtime-testsuite/test" />
+      <root url="file://D:/antlr4-4.8/runtime/Java/src" />
+      <root url="file://D:/antlr4-4.8/tool-testsuite/test" />
+      <root url="file://D:/antlr4-4.8/tool/playground" />
+      <root url="file://D:/antlr4-4.8/tool/src" />
+    </SOURCES>
+  </library>
+</component>

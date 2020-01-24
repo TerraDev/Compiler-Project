@@ -1,18 +1,18 @@
 package com.company.LULU;
 
-public class Amir_operand {
+public class Variable {
     private String _name;//
     private String _value;
     private String _type;
     private String _error;
 
-    public Amir_operand(String _name, String _value, String _type)
+    public Variable(String _name, String _value, String _type)
     {
         this._name = new String(_name);
         this._value = new String(_value);
         this._type = new String(_type);
     }
-    public Amir_operand(Amir_operand op)
+    public Variable(Variable op)
     {
         this._name = op.get_name();
         this._type = op.get_type();
