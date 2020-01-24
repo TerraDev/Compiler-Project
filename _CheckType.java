@@ -5,9 +5,13 @@ import java.util.*;
 public class _CheckType {
     public static String getResultType(String op1_type,String operation,  String op2_type)
     {
+        if (op1_type.equals(null))
+            return op2_type;
         if (operation.equals("==")||operation.equals("!=")||operation.equals(">")||operation.equals(">=")||
                 operation.equals("<")||operation.equals("<="))
             return "bool";
+        if(operation.equals("="))
+            return op1_type;
         if(op1_type.equals(op2_type))
         {
             return op1_type;
@@ -26,4 +30,5 @@ public class _CheckType {
         }
         return null;
     }
+
 }

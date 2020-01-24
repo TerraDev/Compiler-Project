@@ -1,28 +1,27 @@
 package com.company;
-import java.util.*;
 
 public class BinaryOperation {
-    private _operand op3;
-    private _operand op1;
+    private Variable op3;
+    private Variable op1;
     private String operation;
-    private _operand op2;
+    private Variable op2;
 
-    public BinaryOperation(_operand op3,_operand op1, String operation,_operand op2)
+    public BinaryOperation(Variable op3, Variable op1, String operation, Variable op2)
     {
-        this.op3 = new _operand(op3);
-        this.op1 = new _operand(op1);
-        this.op2 = new _operand(op2);
+        this.op3 = new Variable(op3);
+        this.op1 = new Variable(op1);
+        this.op2 = new Variable(op2);
         this.operation = new String(operation);
         this._rusult();
     }
-    public BinaryOperation(_operand op3,_operand op1, String operation)
+    public BinaryOperation(Variable op3, Variable op1, String operation)
     {
-        this.op3 = new _operand(op3);
-        this.op1 = new _operand(op1);
+        this.op3 = new Variable(op3);
+        this.op1 = new Variable(op1);
         this.operation = new String(operation);
         this._rusult();
     }
-    public _operand _rusult()
+    public Variable _rusult()
     {
         switch (op3.get_type())
         {
@@ -215,6 +214,75 @@ public class BinaryOperation {
                 //String flag2;
                 switch (operation)
                 {
+                    case "!":
+                        if(op1.get_type().equals("bool"))
+                        {
+                            op3.set_value(String.valueOf(!Boolean.parseBoolean(op1.get_value())));
+                            return op3;
+                        }
+                        else if(op1.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(_Convert.intToBool(op1.get_value()))));
+                            return op3;
+                        }
+                        else {
+                            op3.set_error(operation+"is not implementation for "+op1.get_type());
+                            return op3;
+                        }
+                    case "||":
+                        if (op1.get_type().equals("bool") && op2.get_type().equals("bool"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op1.get_value())
+                                    || Boolean.parseBoolean(op2.get_value())));
+                            return op3;
+                        }
+                        else if(op1.get_type().equals("int")&&op2.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(_Convert.intToBool(op1.get_value()))
+                                    || Boolean.parseBoolean(_Convert.intToBool(op2.get_value()))));
+                            return op3;
+                        }
+                        else if (op1.get_type().equals("bool")&&op2.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op1.get_value())
+                                    ||Boolean.parseBoolean(_Convert.intToBool(op2.get_value()))));
+                        }
+                        else if (op2.get_type().equals("bool")&&op1.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op2.get_value())
+                                    ||Boolean.parseBoolean(_Convert.intToBool(op1.get_value()))));
+                        }
+                        else
+                        {
+                            op3.set_error(operation+"is not implementation for "+op1.get_type()+" and "+op2.get_type());
+                        }
+                    case "&&":
+                        if (op1.get_type().equals("bool") && op2.get_type().equals("bool"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op1.get_value())
+                                    && Boolean.parseBoolean(op2.get_value())));
+                            return op3;
+                        }
+                        else if(op1.get_type().equals("int")&&op2.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(_Convert.intToBool(op1.get_value()))
+                                    && Boolean.parseBoolean(_Convert.intToBool(op2.get_value()))));
+                            return op3;
+                        }
+                        else if (op1.get_type().equals("bool")&&op2.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op1.get_value())
+                                    && Boolean.parseBoolean(_Convert.intToBool(op2.get_value()))));
+                        }
+                        else if (op2.get_type().equals("bool")&&op1.get_type().equals("int"))
+                        {
+                            op3.set_value(String.valueOf(Boolean.parseBoolean(op2.get_value())
+                                    && Boolean.parseBoolean(_Convert.intToBool(op1.get_value()))));
+                        }
+                        else
+                        {
+                            op3.set_error(operation+"is not implementation for "+op1.get_type()+" and "+op2.get_type());
+                        }
                     case "==":
                         if (op1.get_type().equals(op2.get_type()))
                         {
