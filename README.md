@@ -2,4 +2,4 @@
 
 Semantic Analysis finished.
 
-Grammar at 
+Grammar at src/com/company / company.g4
