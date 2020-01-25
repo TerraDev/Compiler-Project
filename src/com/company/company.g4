@@ -5,8 +5,10 @@ test: expr EOF;
 
 ft_dcl: Declare '{' (func_dcl| type_dcl| var_def)+ '}'
 ;
-func_dcl: ('(' args ')' '=')? ID '(' (args | args_var)? ')' ';'
+func_dcl: ('(' ret1 ')' '=')? ID '(' (arguments)? ')' ';'
 ;
+ret1: args;
+arguments : args | args_var;
 args: type ('[' ']')* #args1
 | args ',' type ('[' ']')* #args2
 ;
@@ -15,10 +17,12 @@ args_var: type ('[' ']')* ID #args_var1
 ;
 type_dcl: ID ';';
 var_def: Const?  type  var_val (',' var_val)* ';';
-var_val: ref ('=' expr)?; // the Variable that can be with value or just the name of variable
-ft_def: (type_def | fun_def);
+var_val: ref ('=' expr)?;                       // the Variable that can be with value or just the name of variable
+ft_def: type_def | fun_def;
 type_def: Type ID (':' ID)? '{' component+ '}';
-component: access_modifier? (var_def | fun_def);
+component: access_modifier? var_def     #varComponent
+| access_modifier? fun_def              #funcComponent
+;
 access_modifier: Private | Public | Protected;
 fun_def: ('(' args_var ')' '=')? Function ID '(' args_var? ')' block;
 block: '{' (var_def|stmt)* '}';
@@ -26,15 +30,31 @@ stmt: assign ';' | func_call ';' | cond_stmt | loop_stmt | Break ';' | Continue 
 assign: (var | '(' var (',' var)* ')') '=' expr;
 var: ((This | Super)'.')? ref ('.' ref)*;
 ref: ID ('[' expr ']')*;
-expr: unary_op expr | expr op1 expr | expr op2 expr| expr op3 expr | expr op4 expr | expr bitwise expr | expr logical expr
-| '(' expr ')' |  const_val | Allocate handle_call | func_call | var | list | Nil;
-func_call: (var '.')? handle_call | Read '(' ')' | Write '(' expr ')';
+expr: unary_op expr  #oper1
+| expr op1 expr      #oper2
+| expr op2 expr      #oper3
+| expr op3 expr      #oper4
+| expr op4 expr      #oper5
+| expr bitwise expr  #oper6
+| expr logical expr  #oper7
+| '(' expr ')' #paranthesis
+|  const_val    #consttt
+| Allocate handle_call #alloc
+| func_call #functoin_call
+| var #just_var
+| list #list_op
+| Nil  #null ;
+func_call: (var '.')? handle_call   #func_cl
+ | Read '(' ')' #read
+ | Write '(' expr ')'# write ;
+
 list : '[' (expr | list) (','(expr | list))* ']';
 handle_call: ID '(' params? ')';
 params: expr | expr ',' params;
 cond_stmt: If expr (block | stmt) (Else (block | stmt))? | Switch var '{' switch_body '}' ;
 switch_body: (Caseof Int_val ':' block)+ (Default ':' block)?;
-loop_stmt: For (type?assign)? ';' expr ';' assign? block | While expr block;
+loop_stmt: For (type?assign)? ';' expr ';' assign? block #ForLoop //TODO: MAYBE CHANGE THE TYPE FOR (type?assign)
+| While expr block                             #WhileLoop;
 type: Int | Float | Bool | String | ID;
 const_val: Int_val  | Float_val |  String_val | Bool_val;
 unary_op: '!' | '~' | '-';
@@ -87,7 +107,7 @@ ID: ('@'|'_'|LETTER)('@'|'_'|LETTER|DIGIT)*;
 
 
 fragment EXP: '^'[-+]?Int_val;
-fragment ESC_CODE: '\\'('n' | 'r' | '0' | 't' | '\\' | '\'' | [xX][a-fA-F0-9][a-fA-F0-9]) ;
+fragment ESC_CODE: '\\'('n' | 'r' | '0' | 't' | '\\' | '\'' | [xX][a-fA-F0-9][a-fA-F0-9]);
 fragment EXC_BS: ~('\\');
 fragment INT_DEC: DIGIT+;
 fragment INT_HEX:('0x'|'0X')[0-9a-fA-F]+;

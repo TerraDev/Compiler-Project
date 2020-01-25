@@ -34,17 +34,45 @@ public interface companyVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunc_dcl(companyParser.Func_dclContext ctx);
-
-
+	/**
+	 * Visit a parse tree produced by {@link companyParser#ret1}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRet1(companyParser.Ret1Context ctx);
+	/**
+	 * Visit a parse tree produced by {@link companyParser#arguments}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArguments(companyParser.ArgumentsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code args1}
+	 * labeled alternative in {@link companyParser#args}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
 	T visitArgs1(companyParser.Args1Context ctx);
-
-
+	/**
+	 * Visit a parse tree produced by the {@code args2}
+	 * labeled alternative in {@link companyParser#args}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
 	T visitArgs2(companyParser.Args2Context ctx);
-
-
+	/**
+	 * Visit a parse tree produced by the {@code args_var2}
+	 * labeled alternative in {@link companyParser#args_var}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
 	T visitArgs_var2(companyParser.Args_var2Context ctx);
-
-
+	/**
+	 * Visit a parse tree produced by the {@code args_var1}
+	 * labeled alternative in {@link companyParser#args_var}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
 	T visitArgs_var1(companyParser.Args_var1Context ctx);
 	/**
 	 * Visit a parse tree produced by {@link companyParser#type_dcl}.
@@ -77,11 +105,19 @@ public interface companyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType_def(companyParser.Type_defContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link companyParser#component}.
+	 * Visit a parse tree produced by the {@code varComponent}
+	 * labeled alternative in {@link companyParser#component}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitComponent(companyParser.ComponentContext ctx);
+	T visitVarComponent(companyParser.VarComponentContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code funcComponent}
+	 * labeled alternative in {@link companyParser#component}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFuncComponent(companyParser.FuncComponentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link companyParser#access_modifier}.
 	 * @param ctx the parse tree
@@ -124,15 +160,125 @@ public interface companyVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitRef(companyParser.RefContext ctx);
-
-
-	T visitExpr(companyParser.ExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link companyParser#func_call}.
+	 * Visit a parse tree produced by the {@code paranthesis}
+	 * labeled alternative in {@link companyParser#expr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunc_call(companyParser.Func_callContext ctx);
+	T visitParanthesis(companyParser.ParanthesisContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper1}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper1(companyParser.Oper1Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code null}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNull(companyParser.NullContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper2}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper2(companyParser.Oper2Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code consttt}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitConsttt(companyParser.ConstttContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper3}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper3(companyParser.Oper3Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code just_var}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJust_var(companyParser.Just_varContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper4}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper4(companyParser.Oper4Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper5}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper5(companyParser.Oper5Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper6}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper6(companyParser.Oper6Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code oper7}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOper7(companyParser.Oper7Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code list_op}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitList_op(companyParser.List_opContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code functoin_call}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctoin_call(companyParser.Functoin_callContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code alloc}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlloc(companyParser.AllocContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code func_cl}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunc_cl(companyParser.Func_clContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code read}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRead(companyParser.ReadContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code write}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWrite(companyParser.WriteContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link companyParser#list}.
 	 * @param ctx the parse tree
@@ -164,11 +310,19 @@ public interface companyVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSwitch_body(companyParser.Switch_bodyContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link companyParser#loop_stmt}.
+	 * Visit a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLoop_stmt(companyParser.Loop_stmtContext ctx);
+	T visitForLoop(companyParser.ForLoopContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhileLoop(companyParser.WhileLoopContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link companyParser#type}.
 	 * @param ctx the parse tree

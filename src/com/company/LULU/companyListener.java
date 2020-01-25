@@ -2,8 +2,6 @@
 package com.company.LULU;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
-import java.util.ArrayList;
-
 /**
  * This interface defines a complete listener for a parse tree produced by
  * {@link companyParser}.
@@ -49,6 +47,26 @@ public interface companyListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunc_dcl(companyParser.Func_dclContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link companyParser#ret1}.
+	 * @param ctx the parse tree
+	 */
+	void enterRet1(companyParser.Ret1Context ctx);
+	/**
+	 * Exit a parse tree produced by {@link companyParser#ret1}.
+	 * @param ctx the parse tree
+	 */
+	void exitRet1(companyParser.Ret1Context ctx);
+	/**
+	 * Enter a parse tree produced by {@link companyParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void enterArguments(companyParser.ArgumentsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link companyParser#arguments}.
+	 * @param ctx the parse tree
+	 */
+	void exitArguments(companyParser.ArgumentsContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code args1}
 	 * labeled alternative in {@link companyParser#args}.
@@ -148,15 +166,29 @@ public interface companyListener extends ParseTreeListener {
 	 */
 	void exitType_def(companyParser.Type_defContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link companyParser#component}.
+	 * Enter a parse tree produced by the {@code varComponent}
+	 * labeled alternative in {@link companyParser#component}.
 	 * @param ctx the parse tree
 	 */
-	void enterComponent(companyParser.ComponentContext ctx);
+	void enterVarComponent(companyParser.VarComponentContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link companyParser#component}.
+	 * Exit a parse tree produced by the {@code varComponent}
+	 * labeled alternative in {@link companyParser#component}.
 	 * @param ctx the parse tree
 	 */
-	void exitComponent(companyParser.ComponentContext ctx);
+	void exitVarComponent(companyParser.VarComponentContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code funcComponent}
+	 * labeled alternative in {@link companyParser#component}.
+	 * @param ctx the parse tree
+	 */
+	void enterFuncComponent(companyParser.FuncComponentContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code funcComponent}
+	 * labeled alternative in {@link companyParser#component}.
+	 * @param ctx the parse tree
+	 */
+	void exitFuncComponent(companyParser.FuncComponentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link companyParser#access_modifier}.
 	 * @param ctx the parse tree
@@ -228,25 +260,209 @@ public interface companyListener extends ParseTreeListener {
 	 */
 	void exitRef(companyParser.RefContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link companyParser#expr}.
+	 * Enter a parse tree produced by the {@code paranthesis}
+	 * labeled alternative in {@link companyParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpr(companyParser.ExprContext ctx);
+	void enterParanthesis(companyParser.ParanthesisContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link companyParser#expr}.
+	 * Exit a parse tree produced by the {@code paranthesis}
+	 * labeled alternative in {@link companyParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpr(companyParser.ExprContext ctx);
+	void exitParanthesis(companyParser.ParanthesisContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link companyParser#func_call}.
+	 * Enter a parse tree produced by the {@code oper1}
+	 * labeled alternative in {@link companyParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunc_call(companyParser.Func_callContext ctx);
+	void enterOper1(companyParser.Oper1Context ctx);
 	/**
-	 * Exit a parse tree produced by {@link companyParser#func_call}.
+	 * Exit a parse tree produced by the {@code oper1}
+	 * labeled alternative in {@link companyParser#expr}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunc_call(companyParser.Func_callContext ctx);
+	void exitOper1(companyParser.Oper1Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code null}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNull(companyParser.NullContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code null}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNull(companyParser.NullContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper2}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper2(companyParser.Oper2Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper2}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper2(companyParser.Oper2Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code consttt}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterConsttt(companyParser.ConstttContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code consttt}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitConsttt(companyParser.ConstttContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper3}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper3(companyParser.Oper3Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper3}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper3(companyParser.Oper3Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code just_var}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterJust_var(companyParser.Just_varContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code just_var}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitJust_var(companyParser.Just_varContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper4}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper4(companyParser.Oper4Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper4}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper4(companyParser.Oper4Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper5}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper5(companyParser.Oper5Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper5}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper5(companyParser.Oper5Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper6}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper6(companyParser.Oper6Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper6}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper6(companyParser.Oper6Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code oper7}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterOper7(companyParser.Oper7Context ctx);
+	/**
+	 * Exit a parse tree produced by the {@code oper7}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitOper7(companyParser.Oper7Context ctx);
+	/**
+	 * Enter a parse tree produced by the {@code list_op}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterList_op(companyParser.List_opContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code list_op}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitList_op(companyParser.List_opContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code functoin_call}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctoin_call(companyParser.Functoin_callContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code functoin_call}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctoin_call(companyParser.Functoin_callContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code alloc}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlloc(companyParser.AllocContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code alloc}
+	 * labeled alternative in {@link companyParser#expr}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlloc(companyParser.AllocContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code func_cl}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunc_cl(companyParser.Func_clContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code func_cl}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunc_cl(companyParser.Func_clContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code read}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterRead(companyParser.ReadContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code read}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitRead(companyParser.ReadContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code write}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void enterWrite(companyParser.WriteContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code write}
+	 * labeled alternative in {@link companyParser#func_call}.
+	 * @param ctx the parse tree
+	 */
+	void exitWrite(companyParser.WriteContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link companyParser#list}.
 	 * @param ctx the parse tree
@@ -298,15 +514,29 @@ public interface companyListener extends ParseTreeListener {
 	 */
 	void exitSwitch_body(companyParser.Switch_bodyContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link companyParser#loop_stmt}.
+	 * Enter a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void enterLoop_stmt(companyParser.Loop_stmtContext ctx);
+	void enterForLoop(companyParser.ForLoopContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link companyParser#loop_stmt}.
+	 * Exit a parse tree produced by the {@code ForLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
 	 * @param ctx the parse tree
 	 */
-	void exitLoop_stmt(companyParser.Loop_stmtContext ctx);
+	void exitForLoop(companyParser.ForLoopContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhileLoop(companyParser.WhileLoopContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code WhileLoop}
+	 * labeled alternative in {@link companyParser#loop_stmt}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhileLoop(companyParser.WhileLoopContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link companyParser#type}.
 	 * @param ctx the parse tree

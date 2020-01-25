@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.LULU.*;
+
+//import  org.antlr.
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenFactory;
@@ -18,6 +20,13 @@ import java.util.Scanner;
 public class Main extends companyBaseVisitor {
 
     public static void main(String[] args) {
+
+        int i=0;
+        for(i=0; i<4;i++)
+        {
+
+        }
+
         String st = "%% be name khoda\n" +
                 "declare{\n" +
                 "    (int) = fib(bool v, string s);\n" +
@@ -82,8 +91,8 @@ public class Main extends companyBaseVisitor {
                 "    }\n" +
                 "}";
 
-        String Myinput = "declare{ (int[][], float , float[] ) = func (bool  , string[] ); }\n" +
-                "function x() {}";
+        String Myinput = "declare{ (int, float , float ) = func (bool  , string ); bool harry ; const int hello ; myT;}\n" +
+                "                function x() { int j=2 }";
 
         CharStream input = CharStreams.fromString(Myinput);  //get input as string
         /*BufferedReader br = new BufferedReader(new InputStreamReader(System.in)); get input as user input
@@ -102,3 +111,8 @@ public class Main extends companyBaseVisitor {
         walker.walk(listener,tree);
     }
 }
+
+/*
+declare{ (int[][], float , float[] ) = func (bool  , string[] ); }
+function x() { int q = 3+4.5*6/(7>5 || 8!=5);}
+ */
